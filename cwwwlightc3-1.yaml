@@ -1,0 +1,56 @@
+esphome:
+  name: cwwwlightc3-1
+  friendly_name: cwwwLightc3_1
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "very secure"
+
+ota:
+  - platform: esphome
+    password: "very secure"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Cwwwlightc3-1 Fallback Hotspot"
+    password: "very secure"
+
+captive_portal:
+
+# Example configuration entry
+
+output:
+  - platform: ledc
+    pin: GPIO10
+    id: gpio_cold
+    frequency: 2000Hz
+    zero_means_zero: True
+
+  - platform: ledc
+    pin: GPIO8
+    id: gpio_warm
+    frequency: 2000Hz
+    zero_means_zero: True
+
+# Example usage in a light
+light:
+  - platform: cwww
+    cold_white: gpio_cold
+    warm_white: gpio_warm
+    name: "PanelLight"
+    cold_white_color_temperature: 8000 K
+    warm_white_color_temperature: 2000 K
+    restore_mode: RESTORE_DEFAULT_ON
