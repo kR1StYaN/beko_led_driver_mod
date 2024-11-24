@@ -1,4 +1,4 @@
-# meko_led_driver_mod
+# meko_led_driver_mod with ESPHome
 
 ## FIRST OF ALL I AM NOT AN PROFESSIONAL. DO EVERYTHING AT YOUR OWN RISK.
 
